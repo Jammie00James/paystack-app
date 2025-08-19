@@ -19,6 +19,12 @@ export default function Home() {
   }) => {
     const email = prompt("Enter your email:");
     if (!email) return;
+    // ✅ Simple email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
     setLoading(true)
     const response = await fetch("/api/paystack-init", {
       method: "POST",
